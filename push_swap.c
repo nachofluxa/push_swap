@@ -1,31 +1,43 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/16 11:48:04 by ifluxa-c          #+#    #+#             */
+/*   Updated: 2021/11/16 12:40:25 by ifluxa-c         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_stack stack;
-	if (argc = 1)
+	t_stack	stack;
+
+	if (argc == 1)
 		exit(0);
 	create_list(&stack, argc, argv);
 }
 
-void create_list(t_stack *stack, int argc, char **argv)
+void	create_list(t_stack *stack, int argc, char **argv)
 {
-	char ***l;
-	int i;
-	int j;
+	char	***l;
+	int		i;
+	int		j;
 
 	l = NULL;
 	i = -1;
 	j = 0;
-
-	l = malloc(sizeof(char**) * argc);
+	l = malloc(sizeof(char **) * argc);
 	while (i++ < argc - 1)
 	{
 		argv = argv + 1;
 		l[i] = ft_split((char *)argv, ' ');
 	}
-	stack->a = malloc(sizeof(int) * size_l(l));
-	stack->b = malloc(sizeof(int) * size_l(l));
+	stack->a = malloc(sizeof(int) * size_la(stack));
+	stack->b = malloc(sizeof(int) * size_lb(stack));
 	while (j++ < argc - 1)
 	{
 		i = 0;
@@ -36,61 +48,40 @@ void create_list(t_stack *stack, int argc, char **argv)
 	}
 }
 
-int size_ls(char ***l)
+int	size_la(t_stack *stack)
 {
-	int i;
-	int j;
-	int count;
+	int	i;
+	int	count;
 
 	i = 0;
 	count = 0;
-	while (l[i])
+	while (stack->a[i])
 	{
-		j = 0;
-		while (l[i][j])
-		{
-			j++;
-			count++;
-		}
+		count++;
 		i++;
 	}
 	return (count);
 }
 
-int atoi(char *str, char ***l)
+int	size_lb(t_stack *stack)
 {
-	int		i;
-	int	num;
-	int signo;
+	int	i;
+	int	count;
 
 	i = 0;
-	num = 0;
-	signo = 0;
-	while (str[i] == ' ' || str[i] == '\f' || str[i] == '\n' || str[i] == '\r'
-		|| str[i] == '\t' || str[i] == '\v')
-		i++;
-	while (str[i] == '+' || str[i] == '-')
+	count = 0;
+	while (stack->b[i])
 	{
-		if (str[i] == '-')
-			signo++;
+		count++;
 		i++;
 	}
-	while (str[i] && (str[i] >= 48 && str[i] <= 57))
-	{
-		num = (num * 10) + (str[i] - '0');
-		i++;
-	}
-	free_aux(l);
-	if ((num == 2147483647) || (num == -2147483648))
-		exit(0);
-
-	return (signo * num);
+	return (count);
 }
 
-void free_aux(char ***l)
+void	free_aux(char ***l)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (l[i])
