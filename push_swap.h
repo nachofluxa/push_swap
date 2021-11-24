@@ -6,7 +6,7 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 11:48:13 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2021/11/16 12:41:25 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2021/11/24 12:13:20 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,29 @@ typedef struct s_stack
 
 //push_swap.c
 void	create_list(t_stack *stack, int argc, char **argv);
-int		size_ls(char ***l);
+int		size_l(char ***l);
 void	free_aux(char ***l);
 
 //push_swap_aux.c
-int		atoi(char *str, char ***l);
+int	atoi2(char *str);
+int	size_a(t_stack *stack);
+int	size_b(t_stack *stack);
 
-//push.c
+//push_or_swap.c
+void	swap_a(t_stack *stack);
+void	swap_b(t_stack *stack);
+void	swap_a_b(t_stack *stack);
 void	push_a(t_stack *stack);
 void	push_b(t_stack *stack);
+
+//rotate.c
+void	rotate_a(t_stack *stack);
+void	rotate_b(t_stack *stack);
+void	rotate_a_b(t_stack *stack);
+
+//reverse_rotate.c
+void	reverse_rotate_a(t_stack *stack);
+void	reverse_rotate_b(t_stack *stack);
+void	reverse_rotate_a_b(t_stack *stack);
 
 #endif

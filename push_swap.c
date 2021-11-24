@@ -6,7 +6,7 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 11:48:04 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2021/11/16 12:40:25 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2021/11/24 13:19:46 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int	main(int argc, char **argv)
 
 	if (argc == 1)
 		exit(0);
-	create_list(&stack, argc, argv);
+	else
+		create_list(&stack, argc, argv);
 }
 
 void	create_list(t_stack *stack, int argc, char **argv)
@@ -29,50 +30,43 @@ void	create_list(t_stack *stack, int argc, char **argv)
 
 	l = NULL;
 	i = -1;
-	j = 0;
+	j = -1;
 	l = malloc(sizeof(char **) * argc);
 	while (i++ < argc - 1)
 	{
 		argv = argv + 1;
 		l[i] = ft_split((char *)argv, ' ');
 	}
-	stack->a = malloc(sizeof(int) * size_la(stack));
-	stack->b = malloc(sizeof(int) * size_lb(stack));
+	stack->a = malloc(sizeof(int) * size_l(l));
+	stack->b = malloc(sizeof(int) * size_l(l));
 	while (j++ < argc - 1)
 	{
 		i = 0;
-		while (i++)
+		while (l[j][i])
 		{
-			l[j] = atoi(l);
+			stack->a[i] = atoi2(l[j][i]);
+			i++;
 		}
 	}
+	free_aux(l);
 }
 
-int	size_la(t_stack *stack)
+int	size_l(char ***l)
 {
 	int	i;
+	int	j;
 	int	count;
 
 	i = 0;
 	count = 0;
-	while (stack->a[i])
+	while (l[i])
 	{
-		count++;
-		i++;
-	}
-	return (count);
-}
-
-int	size_lb(t_stack *stack)
-{
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (stack->b[i])
-	{
-		count++;
+		j = 0;
+		while (l[i][j])
+		{
+			j++;
+			count++;
+		}
 		i++;
 	}
 	return (count);

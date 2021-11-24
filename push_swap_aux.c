@@ -6,13 +6,13 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 12:40:28 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2021/11/16 12:40:59 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2021/11/24 12:12:29 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	atoi(char *str, char ***l)
+int	atoi2(char *str)
 {
 	int	i;
 	int	num;
@@ -35,8 +35,27 @@ int	atoi(char *str, char ***l)
 		num = (num * 10) + (str[i] - '0');
 		i++;
 	}
-	free_aux(l);
 	if ((num == 2147483647) || (num == -2147483648))
 		exit(0);
 	return (signo * num);
+}
+
+int	size_a(t_stack *stack)
+{
+	int	len;
+
+	len = 0;
+	while(stack->a[len])
+		len++;
+	return (len);
+}
+
+int	size_b(t_stack *stack)
+{
+	int	len;
+
+	len = 0;
+	while(stack->b[len])
+		len++;
+	return (len);
 }
