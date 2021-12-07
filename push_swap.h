@@ -6,7 +6,7 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 11:48:13 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2021/11/24 12:13:20 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2021/12/07 16:31:28 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,14 @@ int		size_l(char ***l);
 void	free_aux(char ***l);
 
 //push_swap_aux.c
-int	atoi2(char *str);
-int	size_a(t_stack *stack);
-int	size_b(t_stack *stack);
+int		atoi2(char *str);
+int		size_a(t_stack *stack);
+int		size_b(t_stack *stack);
+void	error_message(void);
+void	is_nbr(int argc, char **argv);
+
+//push_swap_aux2.c
+void	nbr_arg(int argc, char **argv);
 
 //push_or_swap.c
 void	swap_a(t_stack *stack);

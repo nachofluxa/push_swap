@@ -6,7 +6,7 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 11:48:04 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2021/11/24 13:19:46 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2021/12/07 16:30:47 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,12 @@
 int	main(int argc, char **argv)
 {
 	t_stack	stack;
+	int		number;
 
-	if (argc == 1)
+	if (argc <= 1)
 		exit(0);
 	else
-		create_list(&stack, argc, argv);
+		nbr_arg(argc, argv);
 }
 
 void	create_list(t_stack *stack, int argc, char **argv)

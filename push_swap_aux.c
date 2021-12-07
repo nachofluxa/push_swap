@@ -6,7 +6,7 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 12:40:28 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2021/11/24 12:12:29 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2021/12/07 16:03:56 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	size_a(t_stack *stack)
 	int	len;
 
 	len = 0;
-	while(stack->a[len])
+	while (stack->a[len])
 		len++;
 	return (len);
 }
@@ -55,7 +55,29 @@ int	size_b(t_stack *stack)
 	int	len;
 
 	len = 0;
-	while(stack->b[len])
+	while (stack->b[len])
 		len++;
 	return (len);
+}
+
+void	error_message(void)
+{
+	write(1, "Error\n", 5);
+	exit(0);
+}
+
+void	is_nbr(int argc, char **argv)
+{
+	int	i;
+
+	i = 1;
+	j = 0;
+	while (argv[i])
+	{
+		if (argv[i][j] >= '0' && argv[i][j] <= '9')
+			j++;
+		else
+			error_message();
+		i++;
+	}
 }
