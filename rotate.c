@@ -5,14 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/24 11:25:29 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2021/11/24 11:43:48 by ifluxa-c         ###   ########.fr       */
+/*   Created: 2022/09/06 13:39:32 by ifluxa-c          #+#    #+#             */
+/*   Updated: 2022/09/06 13:40:45 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "push_swap.h"
 
-void	rotate_a(t_stack *stack)
-{	
+void	rotate_a(t_stack *stack, int w)
+{
 	int	i;
 	int	j;
 	int	aux;
@@ -28,9 +29,11 @@ void	rotate_a(t_stack *stack)
 		j++;
 	}
 	stack->a[i] = aux;
+	if (w == 1)
+		write(1, "ra\n", 3);
 }
 
-void	rotate_b(t_stack *stack)
+void	rotate_b(t_stack *stack, int w)
 {
 	int	i;
 	int	j;
@@ -47,10 +50,13 @@ void	rotate_b(t_stack *stack)
 		j++;
 	}
 	stack->b[i] = aux;
+	if (w == 1)
+		write(1, "rb\n", 3);
 }
 
 void	rotate_a_b(t_stack *stack)
 {
-	rotate_a(stack);
-	rotate_b(stack);
+	rotate_a(stack, 0);
+	rotate_b(stack, 0);
+	write(1, "rr\n", 3);
 }

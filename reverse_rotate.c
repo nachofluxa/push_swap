@@ -5,13 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/24 11:25:29 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2021/11/24 12:55:52 by ifluxa-c         ###   ########.fr       */
+/*   Created: 2022/09/06 13:39:32 by ifluxa-c          #+#    #+#             */
+/*   Updated: 2022/09/06 13:41:38 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "push_swap.h"
 
-void	reverse_rotate_a(t_stack *stack)
+void	reverse_rotate_a(t_stack *stack, int w)
 {
 	int	i;
 	int	aux;
@@ -24,13 +25,14 @@ void	reverse_rotate_a(t_stack *stack)
 	while (stack->a[i])
 	{
 		stack->a[i] = stack->a[i - 1];
-		i++; 
+		i++;
 	}
 	stack->a[0] = aux;
+	if (w == 1)
+		write(1, "rra\n", 4);
 }
 
-
-void	reverse_rotate_b(t_stack *stack)
+void	reverse_rotate_b(t_stack *stack, int w)
 {
 	int	i;
 	int	aux;
@@ -43,13 +45,16 @@ void	reverse_rotate_b(t_stack *stack)
 	while (stack->b[i])
 	{
 		stack->b[i] = stack->b[i - 1];
-		i++; 
+		i++;
 	}
 	stack->b[0] = aux;
+	if (w == 1)
+		write(1, "rrb\n", 4);
 }
 
 void	reverse_rotate_a_b(t_stack *stack)
 {
-	reverse_rotate_a(stack);
-	reverse_rotate_b(stack);
+	reverse_rotate_a(stack, 0);
+	reverse_rotate_b(stack, 0);
+	write (1, "rrr\n", 4);
 }

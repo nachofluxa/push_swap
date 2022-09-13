@@ -1,11 +1,13 @@
 NAME := push_swap
 LIBFT_NAME = libft.a
 
-SRCS =  push_swap.c \
+SRCS =	push_swap.c \
+		aux.c \
+		mount_stack.c \
 		push_or_swap.c \
-		push_swap_aux.c \
-		reverse_rotate.c \
-		rotate.c 
+		rotate.c \
+		reverse_rotate.c 
+
 OBJS = ${SRCS:.c=.o}
 
 LIBFT_DIR := ./libft/

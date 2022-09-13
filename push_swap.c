@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/16 11:48:04 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2021/12/07 16:30:47 by ifluxa-c         ###   ########.fr       */
+/*   Created: 2022/08/24 11:04:45 by ifluxa-c          #+#    #+#             */
+/*   Updated: 2022/09/13 12:10:48 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,80 +15,46 @@
 int	main(int argc, char **argv)
 {
 	t_stack	stack;
-	int		number;
 
 	if (argc <= 1)
 		exit(0);
 	else
-		nbr_arg(argc, argv);
+	{
+		mount_stack(argc, argv, &stack);
+		nbr_arg(argc, &stack);
+	}
+	return (0);
 }
 
-void	create_list(t_stack *stack, int argc, char **argv)
+void	mount_stack(int argc, char **argv, t_stack *stack)
 {
-	char	***l;
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
-	l = NULL;
 	i = -1;
-	j = -1;
-	l = malloc(sizeof(char **) * argc);
+	j = 0;
 	while (i++ < argc - 1)
 	{
-		argv = argv + 1;
-		l[i] = ft_split((char *)argv, ' ');
+		argv += 1;
+		
 	}
-	stack->a = malloc(sizeof(int) * size_l(l));
-	stack->b = malloc(sizeof(int) * size_l(l));
-	while (j++ < argc - 1)
-	{
-		i = 0;
-		while (l[j][i])
-		{
-			stack->a[i] = atoi2(l[j][i]);
-			i++;
-		}
-	}
-	free_aux(l);
+	stack->a = malloc(sizeof(int) * argc - 1);
+	stack->b = malloc(sizeof(int) * argc - 1);
 }
 
-int	size_l(char ***l)
+void	nbr_arg(int argc, t_stack *stack)
 {
-	int	i;
-	int	j;
-	int	count;
+	int	nbr;
 
-	i = 0;
-	count = 0;
-	while (l[i])
-	{
-		j = 0;
-		while (l[i][j])
-		{
-			j++;
-			count++;
-		}
-		i++;
-	}
-	return (count);
-}
-
-void	free_aux(char ***l)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (l[i])
-	{
-		j = 0;
-		while (l[i][j])
-		{
-			free(l[i][j]);
-			j++;
-		}
-		free(l[i]);
-		i++;
-	}
-	free(l);
+	nbr = argc - 1;
+	if (nbr == 2)
+		sort_small_stack(stack, 2);
+	else if (nbr == 3)
+		sort_small_stack (stack, 3);
+	else if (nbr == 4)
+		sort_small_stack(stack, 4);
+	else if (nbr == 5)
+		sort_small_stack(stack, 5);
+	else
+		sort_big_stack(stack);
 }
