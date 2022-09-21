@@ -6,7 +6,7 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 12:03:50 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2022/09/08 13:51:40 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2022/09/20 12:19:03 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	found_max(int *list)
 
 int	size_stack(t_stack *stack, int aux)
 {
-	int size;
+	int	size;
 
 	size = 0;
 	if (aux == 0)

@@ -6,7 +6,8 @@ SRCS =	push_swap.c \
 		mount_stack.c \
 		push_or_swap.c \
 		rotate.c \
-		reverse_rotate.c 
+		reverse_rotate.c \
+		sort_big_stack.c
 
 OBJS = ${SRCS:.c=.o}
 

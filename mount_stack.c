@@ -5,25 +5,75 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/06 13:18:27 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2022/09/13 12:19:04 by ifluxa-c         ###   ########.fr       */
+/*   Created: 2022/09/20 10:24:13 by ifluxa-c          #+#    #+#             */
+/*   Updated: 2022/09/20 13:35:06 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_small_stack(t_stack *stack, int w)
+void	mount_stack2(t_stack *stack)
 {
 	int	i;
 
 	i = 0;
-	if (w == 2)
-	{
-		if (stack->a[i ])
-	}
+	if (stack->a[i] < stack->a[i + 1])
+		swap_a(stack, 1); 
 }
 
-void	sort_big_stack(t_stack *stack)
+void	mount_stack3(t_stack *stack)
 {
+	int	min;
 
+	min = found_min(stack->a);
+	if (min == stack->a[1])
+		swap_a(stack, 1);
+	else if (min == stack->a[2])
+		reverse_rotate_a(stack, 1);
+	push_a(stack);
+	mount_stack2(stack);
+	push_b(stack);
+}
+
+void	mount_stack4(t_stack *stack)
+{
+	int	min;
+
+	min = found_min(stack->a);
+	if (min == stack->a[1])
+		swap_a(stack, 1);
+	else if (min == stack->a[2])
+	{
+		rotate_a(stack, 1);
+		swap_a(stack, 1);
+	}
+	else if (min == stack->a[3])
+		reverse_rotate_a(stack, 1);
+	push_a(stack);
+	mount_stack3(stack);
+	push_b(stack);
+}
+
+void	mount_stack5(t_stack *stack)
+{
+	int	min;
+
+	min = found_min(stack->a);
+	if (min == stack->a[1])
+		swap_a(stack, 1);
+	else if (min == stack->a[2])
+	{
+		rotate_a(stack, 1);
+		swap_a(stack, 1);
+	}
+	else if (min == stack->a[3])
+	{
+		reverse_rotate_a(stack, 1);
+		reverse_rotate_a(stack, 1);
+	}
+	else if (min == stack->a[4])
+		reverse_rotate_a(stack, 1);
+	push_a(stack);
+	mount_stack4(stack);
+	push_b(stack);
 }
