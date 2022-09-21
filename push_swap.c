@@ -6,7 +6,7 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 11:04:45 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2022/09/21 10:24:34 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2022/09/21 11:48:02 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 	else
 	{
 		mount_stack(argc, argv, &stack);
-		nbr_arg(argc, &stack);
+		nbr_arg(&stack, argc);
 	}
 	return (0);
 }
@@ -39,7 +39,7 @@ void	mount_stack(int argc, char **argv, t_stack *stack)
 	while (i++ < argc - 1)
 	{
 		argv += 1;
-		list[i] = ft_split((char *) * argv, ' ');
+		list[i] = *ft_split((char *) * argv, ' ');
 	}
 	stack->a = malloc(sizeof(int) * argc - 1);
 	stack->b = malloc(sizeof(int) * argc - 1);
@@ -48,11 +48,11 @@ void	mount_stack(int argc, char **argv, t_stack *stack)
 	{
 		i = 0;
 		while(list[i][j])
-			stack->a[k++] = ft_atoi(l[i][j]);
+			stack->a[k++] = get_nbrs(&list[i][j]);
 	}
 }
 
-void	nbr_arg(int argc, t_stack *stack)
+void	nbr_arg(t_stack *stack, int argc)
 {
 	int	nbr;
 
@@ -65,6 +65,33 @@ void	nbr_arg(int argc, t_stack *stack)
 		mount_stack4(stack);
 	else if (nbr == 5)
 		mount_stack5(stack);
-	else
+	/*else
 		sort_big_stack(stack);
+*/}
+
+int	get_nbrs(char *aux)
+{
+	int				i;
+	int				j;
+	unsigned int	k;
+
+	i = 0;
+	while (aux[i] <= 13 || aux[i] == ' ')
+		i++;
+	j = 1;
+	if (aux[i] == '-' || aux[i] == '+')
+	{
+		if (aux[i] == '-')
+			j = -1;
+		i++;
+	}
+	k = 0;
+	while (aux[i] >= '0' && aux[i] <= '9')
+	{
+		k = (k * 10) + (aux[i] - '0');
+		if ((k > 2147483647 && j == 1) || (k > 2147483648 && j == -1))
+			error_message();
+		i++;
+	}
+	return (k * j);
 }

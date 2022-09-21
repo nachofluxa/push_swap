@@ -6,7 +6,7 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 11:03:29 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2022/09/20 12:19:52 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2022/09/21 11:46:21 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	swap_a_b(t_stack *stack);
 
 //push_swap.c
 void	mount_stack(int argc, char **argv, t_stack *stack);
-void	nbr_arg(int argc, t_stack *stack);
+void	nbr_arg(t_stack *stack, int argc);
+int		get_nbrs(char *aux);
 
 //reverse_rotate.c
 void	reverse_rotate_a(t_stack *stack, int w);
