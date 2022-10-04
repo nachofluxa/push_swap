@@ -6,7 +6,7 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 10:24:13 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2022/09/20 13:35:06 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2022/10/04 12:25:16 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	mount_stack2(t_stack *stack)
 
 	i = 0;
 	if (stack->a[i] < stack->a[i + 1])
-		swap_a(stack, 1); 
+		swap_a(stack, 1);
 }
 
 void	mount_stack3(t_stack *stack)

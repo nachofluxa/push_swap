@@ -7,7 +7,8 @@ SRCS =	push_swap.c \
 		push_or_swap.c \
 		rotate.c \
 		reverse_rotate.c \
-		sort_big_stack.c
+		sort_big_stack.c \
+		errors.c
 
 OBJS = ${SRCS:.c=.o}
 
@@ -17,7 +18,7 @@ EXE_DIR = ./
 
 CC := cc
 GCC := gcc
-CFLAGS := -Wall -Wextra -Werror  
+CFLAGS := -Wall -Wextra -Werror -O3
 MV := mv -f
 RM := rm -f
 

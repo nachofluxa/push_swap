@@ -6,7 +6,7 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 11:04:45 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2022/09/21 11:48:02 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2022/10/04 13:22:46 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	main(int argc, char **argv)
 	else
 	{
 		mount_stack(argc, argv, &stack);
+		check_repeat_numbers(&stack);
 		nbr_arg(&stack, argc);
 	}
 	return (0);
@@ -31,24 +32,30 @@ void	mount_stack(int argc, char **argv, t_stack *stack)
 	int		i;
 	int		j;
 	int		k;
-	char	**list;
+	int		l;
 
-	i = -1;
-	list = malloc(sizeof(char *) * argc);
-	j = 0;
-	while (i++ < argc - 1)
+	i = 1;
+	while (i < argc)
 	{
-		argv += 1;
-		list[i] = *ft_split((char *) * argv, ' ');
-	}
-	stack->a = malloc(sizeof(int) * argc - 1);
-	stack->b = malloc(sizeof(int) * argc - 1);
-	k = -1;
-	while (list[j])
-	{
-		i = 0;
-		while(list[i][j])
-			stack->a[k++] = get_nbrs(&list[i][j]);
+		j = 0;
+		k = 0;
+		while (argv[i][j])
+		{
+			l = 0;
+			check_argv(argv[i]);
+			while (argv[i][j] == ' ' && argv[i][j++])
+				k++;
+			while (((argv[i][j] >= '0' && argv[i][j] <= '9')
+				|| argv[i][j] == '-' || argv[i][j] == '+') && argv[i][j++])
+				j++;
+			if (l > 0)
+			{
+
+			}
+
+			k += l;
+		}
+		i++;
 	}
 }
 

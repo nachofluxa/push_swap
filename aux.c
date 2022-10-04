@@ -6,7 +6,7 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 12:03:50 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2022/09/20 12:19:03 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2022/10/04 12:24:18 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,4 @@ int	size_stack(t_stack *stack, int aux)
 			size++;
 	}
 	return (size);
-}
-
-void	error_message(void)
-{
-	write(1, "Error\n", 5);
-	exit(0);
 }

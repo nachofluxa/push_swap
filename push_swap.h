@@ -6,7 +6,7 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 11:03:29 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2022/09/21 11:46:21 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2022/10/04 13:19:31 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ int		found_min(int *list);
 int		found_max(int *list);
 int		check_nbr(char **str);
 int		size_stack(t_stack *stack, int aux);
+
+//errors.c
+void	check_repeat_numbers(t_stack *stack);
+void	check_argv(char *argv);
 void	error_message(void);
 
 //mount_stack.c
