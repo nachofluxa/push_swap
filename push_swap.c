@@ -6,7 +6,7 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 11:04:45 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2022/10/04 13:22:46 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2022/10/05 12:31:04 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int argc, char **argv)
 	t_stack	stack;
 
 	if (argc <= 1)
-		exit(0);
+		error_message();
 	else
 	{
 		mount_stack(argc, argv, &stack);
@@ -29,33 +29,19 @@ int	main(int argc, char **argv)
 
 void	mount_stack(int argc, char **argv, t_stack *stack)
 {
-	int		i;
-	int		j;
-	int		k;
-	int		l;
-
-	i = 1;
-	while (i < argc)
+	int i;
+	int j;
+	i = 0;
+	j = 1;
+	stack->a = ft_calloc(sizeof(int), argc - 1);
+	while (i < argc && argv[j])
 	{
-		j = 0;
-		k = 0;
-		while (argv[i][j])
-		{
-			l = 0;
-			check_argv(argv[i]);
-			while (argv[i][j] == ' ' && argv[i][j++])
-				k++;
-			while (((argv[i][j] >= '0' && argv[i][j] <= '9')
-				|| argv[i][j] == '-' || argv[i][j] == '+') && argv[i][j++])
-				j++;
-			if (l > 0)
-			{
-
-			}
-
-			k += l;
-		}
+		check_argv(argv[j]);
+		stack->a[i] = get_nbrs(argv[j]);
+		write(1, "hello\n", 6);
+		write(1, &stack->a[i], 1);
 		i++;
+		j++;
 	}
 }
 
@@ -83,8 +69,8 @@ int	get_nbrs(char *aux)
 	unsigned int	k;
 
 	i = 0;
-	while (aux[i] <= 13 || aux[i] == ' ')
-		i++;
+	/*while (aux[i] <= 13 || aux[i] == ' ')
+		i++;*/
 	j = 1;
 	if (aux[i] == '-' || aux[i] == '+')
 	{

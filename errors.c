@@ -6,7 +6,7 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 11:07:03 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2022/10/04 13:19:54 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2022/10/05 12:07:58 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,13 @@ void	check_repeat_numbers(t_stack *stack)
 void	check_argv(char *argv)
 {
 	int	i;
-	int	error;
 
 	i = 0;
-	error = 0;
 	while (argv[i])
 	{
 		if (argv[i] == '-' || argv[i] == '+')
 			i++;
-		if (!(argv[i] >= '0' && argv[i] <= '9') || (argv[i] == '-')
-			|| argv[i] == '+' || argv[i] == ' ')
+		if (!(argv[i] >= '0' && argv[i] <= '9'))
 			error_message();
 		i++;
 	}
