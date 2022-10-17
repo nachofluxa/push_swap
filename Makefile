@@ -18,7 +18,7 @@ EXE_DIR = ./
 
 CC := cc
 GCC := gcc
-CFLAGS := -Wall -Wextra -Werror
+CFLAGS := -Wall -Wextra -Werror -fsanitize=address -g3
 MV := mv -f
 RM := rm -f
 
@@ -26,7 +26,7 @@ RM := rm -f
 	$(CC)  $(CFLAGS) -c $< -I $(INC_DIR) -o $@ 
 
 $(NAME): $(LIBFT_DIR)$(LIBFT_NAME) $(OBJS)
-	$(CC) -o $(NAME)  $^ -I $(INC_DIR)
+	$(CC) -fsanitize=address -o $(NAME)  $^ -I $(INC_DIR)
 
 $(LIBFT_DIR)$(LIBFT_NAME): $(LIBFT_DIR)
 	make -C $(LIBFT_DIR)

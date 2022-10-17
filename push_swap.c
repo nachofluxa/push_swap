@@ -6,7 +6,7 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 11:04:45 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2022/10/05 12:31:04 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2022/10/11 13:22:07 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,23 @@ int	main(int argc, char **argv)
 
 void	mount_stack(int argc, char **argv, t_stack *stack)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
+
 	i = 0;
 	j = 1;
 	stack->a = ft_calloc(sizeof(int), argc - 1);
+	stack->b = ft_calloc(sizeof(int), argc - 1);
+	stack->shorted = ft_calloc(sizeof(int), argc - 1);
+	stack->size_a = argc - 1;
 	while (i < argc && argv[j])
 	{
 		check_argv(argv[j]);
 		stack->a[i] = get_nbrs(argv[j]);
-		write(1, "hello\n", 6);
-		write(1, &stack->a[i], 1);
 		i++;
 		j++;
 	}
+	
 }
 
 void	nbr_arg(t_stack *stack, int argc)
@@ -58,9 +61,17 @@ void	nbr_arg(t_stack *stack, int argc)
 		mount_stack4(stack);
 	else if (nbr == 5)
 		mount_stack5(stack);
-	/*else
-		sort_big_stack(stack);
-*/}
+	else if (nbr > 5 && nbr < 250)
+	{
+		stack->chunk_size = 10;
+		short_big_stack(stack);
+	}
+	else
+	{
+		stack->chunk_size = 20;
+		short_big_stack(stack);
+	}
+}
 
 int	get_nbrs(char *aux)
 {
@@ -69,8 +80,6 @@ int	get_nbrs(char *aux)
 	unsigned int	k;
 
 	i = 0;
-	/*while (aux[i] <= 13 || aux[i] == ' ')
-		i++;*/
 	j = 1;
 	if (aux[i] == '-' || aux[i] == '+')
 	{

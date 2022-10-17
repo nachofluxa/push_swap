@@ -6,7 +6,7 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 11:07:03 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2022/10/05 12:07:58 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2022/10/11 12:37:03 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,19 @@ void	check_repeat_numbers(t_stack *stack)
 {
 	int	i;
 	int	repeat;
+	int x;
 
-	i = 0;
+	i = -1;
 	repeat = 0;
-	if (stack->a)
+	while (++i < stack->size_a && repeat == 0)
 	{
-		while (stack->a[i] && repeat == 0)
+		x = -1;
+		while (++x < stack->size_a)
 		{
-			if (stack->a[i + 1] == stack->a[i]
-				|| stack->a[i - 1] == stack->a[i])
+			if (stack->a[x] == stack->a[i] && x != i)
 				repeat = 1;
-			else
-				i++;
 		}
+			
 	}
 	if (repeat == 1)
 		error_message();

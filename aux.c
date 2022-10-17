@@ -6,7 +6,7 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 12:03:50 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2022/10/04 12:24:18 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2022/10/17 12:38:18 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,30 +33,30 @@ int	check_nbr(char **str)
 	return (1);
 }
 
-int	found_min(int *list)
+int	found_min(int *list, int size)
 {
 	int	min;
 	int	i;
 
 	i = 0;
-	while (list[i])
+	while (i < size)
 	{
-		if (list[i] < list[i + 1])
+		if (min > list[i])
 			min = list[i];
 		i++;
 	}
 	return (min);
 }
 
-int	found_max(int *list)
+int	found_max(int *list, int size)
 {
 	int	max;
 	int	i;
 
 	i = 0;
-	while (list[i])
+	while (i < size)
 	{
-		if (list[i] > list[i + 1])
+		if (max < list[i])
 			max = list[i];
 		i++;
 	}

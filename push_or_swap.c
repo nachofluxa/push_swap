@@ -6,7 +6,7 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 13:55:54 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2022/09/06 13:56:45 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2022/10/17 13:13:34 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,18 @@ void	push_a(t_stack *stack)
 	int	i;
 	int	j;
 
-	if (size_stack(stack, 1) > 0)
+	if (stack->size_b > 0)
 	{
-		i = size_stack(stack, 0) + 1;
+		i = stack->size_a + 1;
 		while (--i > 0)
 			stack->a[i] = stack->a[i - 1];
 		stack->a[0] = stack->b[0];
 		i = -1;
-		j = size_stack(stack, 1) - 1;
+		j = stack->size_b - 1;
 		while (++i < j)
 			stack->b[i] = stack->b[i + 1];
+		stack->size_a++;
+		stack->size_b--;
 	}
 	write(1, "pa\n", 3);
 }
@@ -71,16 +73,18 @@ void	push_b(t_stack *stack)
 	int	i;
 	int	j;
 
-	if (size_stack(stack, 0) > 0)
+	if (stack->size_a > 0)
 	{
-		i = size_stack(stack, 1) + 1;
+		i = stack->size_b + 1;
 		while (--i > 0)
 			stack->b[i] = stack->b[i - 1];
 		stack->b[0] = stack->a[0];
 		i = -1;
-		j = size_stack(stack, 0) - 1;
+		j = stack->size_a - 1;
 		while (++i < j)
 			stack->a[i] = stack->a[i + 1];
+		stack->size_b++;
+		stack->size_a--;
 	}
 	write(1, "pb\n", 3);
 }

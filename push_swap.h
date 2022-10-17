@@ -6,7 +6,7 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 11:03:29 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2022/10/04 13:19:31 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2022/10/17 12:33:27 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@ typedef struct s_stack
 {
 	int	*a;
 	int	*b;
+	int *shorted;
+	int chunk_size;
 	int	size_a;
 	int	size_b;
 }t_stack;
 
 //aux.c
-int		found_min(int *list);
-int		found_max(int *list);
+int		found_min(int *list, int size);
+int		found_max(int *list, int size);
 int		check_nbr(char **str);
 int		size_stack(t_stack *stack, int aux);
 
@@ -62,7 +64,7 @@ void	rotate_a_b(t_stack *stack);
 void	push_a(t_stack *stack);
 void	push_b(t_stack *stack);
 
-//sort_big_stack.c
-void	sort_big_stack(t_stack *stack);
+//short_big_stack.c
+void	short_big_stack(t_stack *stack);
 
 #endif
