@@ -6,19 +6,19 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 10:24:34 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2022/10/17 13:30:02 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2022/10/19 14:07:02 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	try_number(int a, int *shorted, int size)
+int	try_number(int a, int *sorted, int size)
 {
 	int x;
 
 	x = -1;
 	while(++x < size)
-		if (a == shorted[x])
+		if (a == sorted[x])
 			return(1);
 	return(0);
 }
@@ -35,10 +35,10 @@ void	booble_sort(t_stack *stack)
 		x[1] = -1;
 		while (++x[1] < stack->size_a)
 		{
-			if (aux > stack->a[x[1]] && try_number(stack->a[x[1]], stack->shorted, stack->size_a) == 0)
+			if (aux > stack->a[x[1]] && try_number(stack->a[x[1]], stack->sorted, stack->size_a) == 0)
 				aux = stack->a[x[1]];
 		}
-		stack->shorted[x[0]] = aux;
+		stack->sorted[x[0]] = aux;
 	}
 }
 
@@ -49,16 +49,16 @@ int	best_nbr(t_stack *stack, int compare[])
 
 	i[0] = -1;
 	while(++i[0] < stack->size_a)
-		if (stack->a[i[0]] >= stack->shorted[compare[0]] 
-			&& stack->a[i[0]] <= stack->shorted[compare[1]])
+		if (stack->a[i[0]] >= stack->sorted[compare[0]] 
+			&& stack->a[i[0]] <= stack->sorted[compare[1]])
 		{
 			options[0] = stack->a[i[0]];
 			break ;
 		}
 	i[1] = stack->size_a;
 	while(--i[1] < stack->size_a)
-		if (stack->a[i[1]] >= stack->shorted[compare[0]] 
-			&& stack->a[i[1]] <= stack->shorted[compare[1]])
+		if (stack->a[i[1]] >= stack->sorted[compare[0]] 
+			&& stack->a[i[1]] <= stack->sorted[compare[1]])
 		{
 			options[1] = stack->a[i[1]];
 			break ;
@@ -114,21 +114,21 @@ void rotate_and_push_b(int aux, t_stack *stack)
 	push_a(stack);
 }
 
-int any_chunk_left(int *stack, int size, int compare[], int *shorted)
+int any_chunk_left(int *stack, int size, int compare[], int *sorted)
 {
 	int x;
 
 	x = -1;
 	while(++x < size)
 	{
-		if(stack[x] >= shorted[compare[0]] &&
-			stack[x] <= shorted[compare[1]])
+		if(stack[x] >= sorted[compare[0]] &&
+			stack[x] <= sorted[compare[1]])
 			return (1);
 	}
 	return(0);
 }
 
-void	short_big_stack(t_stack *stack)
+void	sort_big_stack(t_stack *stack)
 {
 	int	compare[2];
 	int aux;
@@ -142,7 +142,7 @@ void	short_big_stack(t_stack *stack)
 	booble_sort(stack);
 	while(stack->size_a)
 	{
-		if (any_chunk_left(stack->a, stack->size_a, compare, stack->shorted) == 1)
+		if (any_chunk_left(stack->a, stack->size_a, compare, stack->sorted) == 1)
 		{
 			aux = best_nbr(stack, compare);
 			rotate_and_push_a(aux, stack);

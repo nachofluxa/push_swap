@@ -6,7 +6,7 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 12:03:50 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2022/10/17 12:38:18 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2022/10/19 13:36:51 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	found_min(int *list, int size)
 	int	i;
 
 	i = 0;
+	min = list[0];
 	while (i < size)
 	{
 		if (min > list[i])

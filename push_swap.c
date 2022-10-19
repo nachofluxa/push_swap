@@ -6,7 +6,7 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 11:04:45 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2022/10/11 13:22:07 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2022/10/19 14:12:16 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	mount_stack(int argc, char **argv, t_stack *stack)
 	j = 1;
 	stack->a = ft_calloc(sizeof(int), argc - 1);
 	stack->b = ft_calloc(sizeof(int), argc - 1);
-	stack->shorted = ft_calloc(sizeof(int), argc - 1);
+	stack->sorted = ft_calloc(sizeof(int), argc - 1);
 	stack->size_a = argc - 1;
 	while (i < argc && argv[j])
 	{
@@ -45,7 +45,11 @@ void	mount_stack(int argc, char **argv, t_stack *stack)
 		i++;
 		j++;
 	}
-	
+	if (check_if_sorted(stack) == 0)
+	{
+		printf ("Error: The stack is already sorted\n");
+		exit(0);
+	}
 }
 
 void	nbr_arg(t_stack *stack, int argc)
@@ -64,12 +68,12 @@ void	nbr_arg(t_stack *stack, int argc)
 	else if (nbr > 5 && nbr < 250)
 	{
 		stack->chunk_size = 10;
-		short_big_stack(stack);
+		sort_big_stack(stack);
 	}
 	else
 	{
 		stack->chunk_size = 20;
-		short_big_stack(stack);
+		sort_big_stack(stack);
 	}
 }
 

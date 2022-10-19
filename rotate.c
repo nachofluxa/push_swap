@@ -6,7 +6,7 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 13:39:32 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2022/09/06 13:40:45 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2022/10/19 13:43:09 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,16 @@
 void	rotate_a(t_stack *stack, int w)
 {
 	int	i;
-	int	j;
 	int	aux;
 
-	i = 0;
-	while (stack->a[i])
-		i++;
+	i = 1;
 	aux = stack->a[0];
-	j = 1;
-	while (j <= i)
+	while (i < stack->size_a)
 	{
-		stack->a[j - 1] = stack->a[j];
-		j++;
+		stack->a[i - 1] = stack->a[i];
+		i++;
 	}
-	stack->a[i] = aux;
+	stack->a[i - 1] = aux;
 	if (w == 1)
 		write(1, "ra\n", 3);
 }

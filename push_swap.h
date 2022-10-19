@@ -6,7 +6,7 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 11:03:29 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2022/10/17 12:33:27 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2022/10/19 14:05:06 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ typedef struct s_stack
 {
 	int	*a;
 	int	*b;
-	int *shorted;
+	int *sorted;
 	int chunk_size;
 	int	size_a;
 	int	size_b;
@@ -35,6 +35,7 @@ int		size_stack(t_stack *stack, int aux);
 void	check_repeat_numbers(t_stack *stack);
 void	check_argv(char *argv);
 void	error_message(void);
+int	check_if_sorted(t_stack *stack);
 
 //mount_stack.c
 void	mount_stack2(t_stack *stack);
@@ -65,6 +66,6 @@ void	push_a(t_stack *stack);
 void	push_b(t_stack *stack);
 
 //short_big_stack.c
-void	short_big_stack(t_stack *stack);
+void	sort_big_stack(t_stack *stack);
 
 #endif
