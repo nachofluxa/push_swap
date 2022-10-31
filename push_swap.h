@@ -6,7 +6,7 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 11:03:29 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2022/10/19 14:05:06 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2022/10/31 12:42:40 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ typedef struct s_stack
 {
 	int	*a;
 	int	*b;
-	int *sorted;
-	int chunk_size;
+	int	*sorted;
+	int	chunk_size;
 	int	size_a;
 	int	size_b;
 }t_stack;
@@ -35,7 +35,7 @@ int		size_stack(t_stack *stack, int aux);
 void	check_repeat_numbers(t_stack *stack);
 void	check_argv(char *argv);
 void	error_message(void);
-int	check_if_sorted(t_stack *stack);
+int		check_if_sorted(t_stack *stack);
 
 //mount_stack.c
 void	mount_stack2(t_stack *stack);
@@ -66,6 +66,15 @@ void	push_a(t_stack *stack);
 void	push_b(t_stack *stack);
 
 //short_big_stack.c
+int		try_nbr(int a, int *sorted, int size);
+void	booble_sort(t_stack *stack);
+void	rotate_and_push_a(int aux, t_stack *stack);
+void	rotate_and_push_b(int aux, t_stack *stack);
 void	sort_big_stack(t_stack *stack);
+
+//short_big_stack_aux.c
+int		side_of_nbr(int aux, int *stack, int size);
+int		best_nbr(t_stack *stack, int compare[]);
+int		any_chunk_left(int *stack, int size, int compare[], int *sorted);
 
 #endif

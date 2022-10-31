@@ -8,7 +8,8 @@ SRCS =	push_swap.c \
 		rotate.c \
 		reverse_rotate.c \
 		sort_big_stack.c \
-		errors.c
+		sort_big_stack_aux.c \
+		errors.c 
 
 OBJS = ${SRCS:.c=.o}
 
