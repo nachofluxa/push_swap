@@ -6,7 +6,7 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 11:04:45 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2022/10/19 14:12:16 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2022/11/11 13:28:48 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,26 @@ int	main(int argc, char **argv)
 		check_repeat_numbers(&stack);
 		nbr_arg(&stack, argc);
 	}
+	//free_stack(&stack);
 	return (0);
 }
 
 void	mount_stack(int argc, char **argv, t_stack *stack)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 1;
 	stack->a = ft_calloc(sizeof(int), argc - 1);
 	stack->b = ft_calloc(sizeof(int), argc - 1);
 	stack->sorted = ft_calloc(sizeof(int), argc - 1);
-	stack->size_a = argc - 1;
+	stack->size_a = 0;
 	while (i < argc && argv[j])
 	{
 		check_argv(argv[j]);
 		stack->a[i] = get_nbrs(argv[j]);
+		stack->size_a++;
 		i++;
 		j++;
 	}
@@ -69,11 +71,13 @@ void	nbr_arg(t_stack *stack, int argc)
 	{
 		stack->chunk_size = 10;
 		sort_big_stack(stack);
+		//radix_sort(stack);
 	}
 	else
 	{
 		stack->chunk_size = 20;
 		sort_big_stack(stack);
+		//radix_sort(stack);
 	}
 }
 

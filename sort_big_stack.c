@@ -6,7 +6,7 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 10:24:34 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2022/10/31 13:07:16 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2022/11/11 11:36:03 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,6 @@ void	booble_sort(t_stack *stack)
 		}
 		stack->sorted[x[0]] = aux;
 	}
-	int i = 0;
-	while (i < stack->size_a)
-	{
-		printf("%d. %d\n", i + 1, stack->sorted[i]);
-		i++;
-	}
-	exit(0);
 }
 
 void	rotate_and_push_a(int aux, t_stack *stack)
@@ -110,8 +103,8 @@ void	sort_big_stack(t_stack *stack)
 	while(stack->size_b)
 	{
 		int i = -1;
-		while (++i < 8)
-			printf("%d | %d\n", stack->a[i], stack->b[i]);
+		while (++i < stack->size_b)
+			printf("%d\n", stack->b[i]);
 		printf("AQUI TERMINA\n");
 		sleep(1);
 		aux = found_max(stack->b, stack->size_b);

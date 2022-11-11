@@ -6,7 +6,7 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 12:03:50 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2022/10/19 13:36:51 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2022/11/11 13:28:43 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,24 @@ int	size_stack(t_stack *stack, int aux)
 			size++;
 	}
 	return (size);
+}
+
+void	free_stack(t_stack *stack)
+{
+	int i;
+
+	i = -1;
+	while (++i < stack->size_a)
+	{
+		free(&stack->a[i]);
+	}
+	free(stack->a);
+	stack->size_a = 0;
+	i = -1;
+	while (++i < stack->size_b)
+	{
+		free(&stack->b[i]);
+	}
+	stack->size_b = 0;
+	free(stack->b);
 }

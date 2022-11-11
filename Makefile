@@ -27,7 +27,7 @@ RM := rm -f
 	$(CC)  $(CFLAGS) -c $< -I $(INC_DIR) -o $@ 
 
 $(NAME): $(LIBFT_DIR)$(LIBFT_NAME) $(OBJS)
-	$(CC) -fsanitize=address -o $(NAME)  $^ -I $(INC_DIR)
+	$(CC) -o $(NAME)  $^ -I $(INC_DIR)
 
 $(LIBFT_DIR)$(LIBFT_NAME): $(LIBFT_DIR)
 	make -C $(LIBFT_DIR)
