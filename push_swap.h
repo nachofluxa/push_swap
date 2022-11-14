@@ -6,7 +6,7 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 11:03:29 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2022/11/11 13:17:08 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2022/11/14 10:37:30 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int		check_if_sorted(t_stack *stack);
 
 //ft_radix.c
 void	radix_sort(t_stack *stack);
+int	get_max_bits(t_stack *stack);
 
 //mount_stack.c
 void	mount_stack2(t_stack *stack);
