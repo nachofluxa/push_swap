@@ -6,7 +6,7 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 11:04:45 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2022/11/14 10:50:57 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2022/11/16 11:18:08 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	main(int argc, char **argv)
 		check_repeat_numbers(&stack);
 		nbr_arg(&stack, argc);
 	}
-	//free_stack(&stack);
 	return (0);
 }
 
@@ -76,8 +75,8 @@ void	nbr_arg(t_stack *stack, int argc)
 	else
 	{
 		stack->chunk_size = 20;
-		//sort_big_stack(stack);
-		radix_sort(stack);
+		sort_big_stack(stack);
+		//radix_sort(stack);
 	}
 }
 

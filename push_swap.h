@@ -6,14 +6,14 @@
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 11:03:29 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2022/11/14 10:37:30 by ifluxa-c         ###   ########.fr       */
+/*   Updated: 2022/11/16 11:42:48 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "libft/libft.h"
+# include "../libft/libft.h"
 
 typedef struct s_stack
 {
@@ -30,7 +30,7 @@ int		found_min(int *list, int size);
 int		found_max(int *list, int size);
 int		check_nbr(char **str);
 int		size_stack(t_stack *stack, int aux);
-void	free_stack(t_stack *stack);
+void	free_list(int *list, int size);
 
 //errors.c
 void	check_repeat_numbers(t_stack *stack);
