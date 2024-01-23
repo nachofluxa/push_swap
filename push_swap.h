@@ -5,81 +5,77 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/24 11:03:29 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2022/11/16 11:42:48 by ifluxa-c         ###   ########.fr       */
+/*   Created: 2023/08/02 13:32:32 by ifluxa-c          #+#    #+#             */
+/*   Updated: 2023/09/08 11:17:56 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "../libft/libft.h"
+# include "libft/libft.h"
 
-typedef struct s_stack
+typedef struct s_object
 {
-	int	*a;
-	int	*b;
-	int	*sorted;
-	int	chunk_size;
-	int	size_a;
-	int	size_b;
-}t_stack;
+	int		value;
+	ssize_t	order;
+}t_object;
 
 //aux.c
-int		found_min(int *list, int size);
-int		found_max(int *list, int size);
-int		check_nbr(char **str);
-int		size_stack(t_stack *stack, int aux);
-void	free_list(int *list, int size);
+t_list		*remove_first(t_list **list);
+t_list		*remove_last(t_list **list);
+char		**aux_split(char *to_split);
+void		set_final_order(t_list **list);
+void		aux_order(t_list **a, t_list **b, int size, ssize_t order);
+
+//auxII.c
+t_object	*new_obj(int value, ssize_t order);
+void		set_order(t_list *list, ssize_t order);
+int			obj_value(t_list *list);
+ssize_t		obj_order(t_list *list);
+ssize_t		set_orders(t_list **list);
+
+//errors_aux.c
+long		ft_getsign(const char *p, unsigned long *i);
+size_t		ps_atoi(const char *str);
+int			is_number(char *str);
+void		check_two_args(char **aux);
+void		check_3_numbers(t_list **list);
 
 //errors.c
-void	check_repeat_numbers(t_stack *stack);
-void	check_argv(char *argv);
-void	error_message(void);
-int		check_if_sorted(t_stack *stack);
+int			is_ordered(t_list **a, t_list **b);
+int			check_just_one(t_list **list);
+void		check_aux_list(t_list **list, t_list **aux);
+void		error_message(int type);
+void		check_argv(int argc, char *argv[]);
 
-//ft_radix.c
-void	radix_sort(t_stack *stack);
-int	get_max_bits(t_stack *stack);
-
-//mount_stack.c
-void	mount_stack2(t_stack *stack);
-void	mount_stack3(t_stack *stack);
-void	mount_stack4(t_stack *stack);
-void	mount_stack5(t_stack *stack);
-
-//push_or_swap.c
-void	swap_a(t_stack *stack, int w);
-void	swap_b(t_stack *stack, int w);
-void	swap_a_b(t_stack *stack);
+//order_list.c
+void		order_3(t_list **a);
+void		order_4(t_list **a, t_list **b);
+void		help_order_5(t_list **a, int size, ssize_t order);
+void		order_radix(t_list **a, t_list **b, ssize_t radix);
+void		ini_radix(t_list **a, t_list **b, ssize_t max_order);
 
 //push_swap.c
-void	mount_stack(int argc, char **argv, t_stack *stack);
-void	nbr_arg(t_stack *stack, int argc);
-int		get_nbrs(char *aux);
+void		mount_two_args(char **argv);
+void		free_two_args(t_list **list, char **aux, char *to_split);
+void		mount_multiple_args(int argc, char **argv);
 
 //reverse_rotate.c
-void	reverse_rotate_a(t_stack *stack, int w);
-void	reverse_rotate_b(t_stack *stack, int w);
-void	reverse_rotate_a_b(t_stack *stack);
+void		reverse_rotate_a(t_list **a, int type);
+void		reverse_rotate_b(t_list **b, int type);
+void		reverse_rotate_a_b(t_list **a, t_list **b);
 
 //rotate.c
-void	rotate_a(t_stack *stack, int w);
-void	rotate_b(t_stack *stack, int w);
-void	rotate_a_b(t_stack *stack);
-void	push_a(t_stack *stack);
-void	push_b(t_stack *stack);
+void		rotate_a(t_list **a, int type);
+void		rotate_b(t_list **b, int type);
+void		rotate_a_b(t_list **a, t_list **b);
 
-//short_big_stack.c
-int		try_nbr(int a, int *sorted, int size);
-void	booble_sort(t_stack *stack);
-void	rotate_and_push_a(int aux, t_stack *stack);
-void	rotate_and_push_b(int aux, t_stack *stack);
-void	sort_big_stack(t_stack *stack);
-
-//short_big_stack_aux.c
-int		side_of_nbr(int aux, int *stack, int size);
-int		best_nbr(t_stack *stack, int compare[]);
-int		any_chunk_left(int *stack, int size, int compare[], int *sorted);
+//swap.c
+void		swap_a(t_list **a, int type);
+void		swap_b(t_list **b, int type);
+void		swap_a_b(t_list **a, t_list **b);
+void		push_a(t_list **a, t_list **b);
+void		push_b(t_list **a, t_list **b);
 
 #endif

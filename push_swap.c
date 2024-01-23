@@ -5,102 +5,81 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/24 11:04:45 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2022/11/16 11:18:08 by ifluxa-c         ###   ########.fr       */
+/*   Created: 2023/08/02 13:32:28 by ifluxa-c          #+#    #+#             */
+/*   Updated: 2023/09/08 11:25:45 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	mount_two_args(char **argv)
 {
-	t_stack	stack;
-
-	if (argc <= 1)
-		error_message();
-	else
-	{
-		mount_stack(argc, argv, &stack);
-		check_repeat_numbers(&stack);
-		nbr_arg(&stack, argc);
-	}
-	return (0);
-}
-
-void	mount_stack(int argc, char **argv, t_stack *stack)
-{
+	t_list	**list;
+	char	**aux;
+	char	*to_split;
 	int		i;
-	int		j;
 
-	i = 0;
-	j = 1;
-	stack->a = ft_calloc(sizeof(int), argc - 1);
-	stack->b = ft_calloc(sizeof(int), argc - 1);
-	stack->sorted = ft_calloc(sizeof(int), argc - 1);
-	stack->size_a = 0;
-	while (i < argc && argv[j])
+	to_split = ft_strtrim(argv[1], " \t\n\v\r\f");
+	aux = aux_split(to_split);
+	check_two_args(aux);
+	list = ft_calloc(1, sizeof(t_list **));
+	if (!list)
 	{
-		check_argv(argv[j]);
-		stack->a[i] = get_nbrs(argv[j]);
-		stack->size_a++;
-		i++;
-		j++;
-	}
-	if (check_if_sorted(stack) == 0)
-	{
-		printf ("Error: The stack is already sorted\n");
+		free(aux);
 		exit(0);
 	}
-}
-
-void	nbr_arg(t_stack *stack, int argc)
-{
-	int	nbr;
-
-	nbr = argc - 1;
-	if (nbr == 2)
-		mount_stack2(stack);
-	else if (nbr == 3)
-		mount_stack3(stack);
-	else if (nbr == 4)
-		mount_stack4(stack);
-	else if (nbr == 5)
-		mount_stack5(stack);
-	else if (nbr > 5 && nbr < 250)
-	{
-		stack->chunk_size = 10;
-		//sort_big_stack(stack);
-		radix_sort(stack);
-	}
-	else
-	{
-		stack->chunk_size = 20;
-		sort_big_stack(stack);
-		//radix_sort(stack);
-	}
-}
-
-int	get_nbrs(char *aux)
-{
-	int				i;
-	int				j;
-	unsigned int	k;
-
 	i = 0;
-	j = 1;
-	if (aux[i] == '-' || aux[i] == '+')
+	*list = ft_lstnew(new_obj(ft_atoi(aux[i]), -1));
+	while (aux[++i])
+		if (ft_strlen(aux[i]))
+			ft_lstadd_back(list, ft_lstnew(new_obj(ft_atoi(aux[i]), -1)));
+	set_final_order(list);
+	free_two_args(list, aux, to_split);
+}
+
+void	free_two_args(t_list **list, char **aux, char *to_split)
+{
+	int	i;
+
+	ft_lstclear(list, *free);
+	free(list);
+	i = 0;
+	while (aux[i])
+		free(aux[i++]);
+	free(aux);
+	free(to_split);
+}
+
+void	mount_multiple_args(int argc, char **argv)
+{
+	t_list	**list;
+	int		i;
+
+	list = ft_calloc(1, sizeof(t_list **));
+	if (!list)
+		exit(1);
+	i = 1;
+	check_argv(argc, &argv[i]);
+	*list = ft_lstnew(new_obj(ft_atoi(argv[i]), -1));
+	if (!list)
+		exit(1);
+	while (++i < argc && argv[i])
 	{
-		if (aux[i] == '-')
-			j = -1;
-		i++;
+		check_argv(argc, &argv[i]);
+		ft_lstadd_back(list, ft_lstnew(new_obj(ft_atoi(argv[i]), -1)));
 	}
-	k = 0;
-	while (aux[i] >= '0' && aux[i] <= '9')
-	{
-		k = (k * 10) + (aux[i] - '0');
-		if ((k > 2147483647 && j == 1) || (k > 2147483648 && j == -1))
-			error_message();
-		i++;
-	}
-	return (k * j);
+	set_final_order(list);
+	ft_lstclear(list, *free);
+	free(list);
+}
+
+int	main(int argc, char *argv[])
+{
+	if (argc <= 1)
+		return (0);
+	else if (argc == 2)
+		mount_two_args(argv);
+	else
+		mount_multiple_args(argc, argv);
+	return (0);
 }

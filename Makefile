@@ -1,16 +1,15 @@
 NAME := push_swap
 LIBFT_NAME = libft.a
 
-SRCS =	push_swap.c \
-		aux.c \
-		mount_stack.c \
-		push_or_swap.c \
-		rotate.c \
-		reverse_rotate.c \
-		sort_big_stack.c \
-		sort_big_stack_aux.c \
+SRCS =	aux.c \
+		auxII.c \
+		errors_aux.c \
 		errors.c \
-		ft_radix.c 
+		order_list.c \
+		push_swap.c \
+		reverse_rotate.c \
+		rotate.c \
+		swap_push.c 
 
 OBJS = ${SRCS:.c=.o}
 
@@ -25,7 +24,7 @@ MV := mv -f
 RM := rm -f
 
 %.o: %.c
-	$(CC)  $(CFLAGS) -c $< -I $(INC_DIR) -o $@ 
+	$(CC)  $(CFLAGS) -c $< -I $(INC_DIR) -o $@
 
 $(NAME): $(LIBFT_DIR)$(LIBFT_NAME) $(OBJS)
 	$(CC) -o $(NAME)  $^ -I $(INC_DIR)

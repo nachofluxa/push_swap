@@ -5,50 +5,40 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ifluxa-c <ifluxa-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/06 13:39:32 by ifluxa-c          #+#    #+#             */
-/*   Updated: 2022/10/19 13:48:11 by ifluxa-c         ###   ########.fr       */
+/*   Created: 2023/08/02 13:32:52 by ifluxa-c          #+#    #+#             */
+/*   Updated: 2023/08/24 09:51:42 by ifluxa-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	reverse_rotate_a(t_stack *stack, int w)
+void	reverse_rotate_a(t_list **a, int type)
 {
-	int	i;
-	int	aux;
+	t_list	*last;
 
-	aux = stack->a[stack->size_a - 1];
-	i = stack->size_a - 1;
-	while (i > 0)
-	{
-		stack->a[i] = stack->a[i - 1];
-		i--;
-	}
-	stack->a[0] = aux;
-	if (w == 1)
+	if (ft_lstsize(*a) < 2)
+		return ;
+	last = remove_last(a);
+	ft_lstadd_front(a, last);
+	if (type == 0)
 		write(1, "rra\n", 4);
 }
 
-void	reverse_rotate_b(t_stack *stack, int w)
+void	reverse_rotate_b(t_list **b, int type)
 {
-	int	i;
-	int	aux;
+	t_list	*last;
 
-	aux = stack->b[stack->size_b - 1];
-	i = stack->size_b - 1;
-	while (i > 0)
-	{
-		stack->b[i] = stack->b[i - 1];
-		i--;
-	}
-	stack->b[0] = aux;
-	if (w == 1)
+	if (ft_lstsize(*b) < 2)
+		return ;
+	last = remove_last(b);
+	ft_lstadd_front(b, last);
+	if (type == 0)
 		write(1, "rrb\n", 4);
 }
 
-void	reverse_rotate_a_b(t_stack *stack)
+void	reverse_rotate_a_b(t_list **a, t_list **b)
 {
-	reverse_rotate_a(stack, 0);
-	reverse_rotate_b(stack, 0);
-	write (1, "rrr\n", 4);
+	reverse_rotate_a(a, 1);
+	reverse_rotate_b(b, 1);
+	write(1, "rrr\n", 4);
 }
